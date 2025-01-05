@@ -10,16 +10,17 @@
 //  Updated by Omar Ikram on 04/07/2021 - macOS Monterey 12 Beta 2 (21A5268h)
 //  Updated by Omar Ikram on 08/01/2022 - macOS Monterey 12.1 (21C52)
 //  Updated by Omar Ikram on 15/02/2022 - macOS Monterey 12.2.1 (21D62)
+//  Updated by Omar Ikram on 04/01/2025 - macOS Sequoia 15.2 (24C101)
 //
 
 /*
  
- A demo of using Apple's EndpointSecurity framework - tested on macOS Monterey 12.2.1 (21D62).
+ A demo of using Apple's EndpointSecurity framework - tested on macOS Sequoia 15.2 (24C101).
  
  Minimum supported version: macOS Catalina 10.15
  
  This demo is an update of previous demos, which has been updated to support the latest API changes
- Apple has made for macOS Monterey 12.
+ Apple has made for macOS Sequoia 15.
  
  The demo has also been expanded significantly to include more detail and cover more of the API.
  
@@ -31,7 +32,7 @@
  not production-ready and is not meant to be used in a production environment. Use it at your own risk!
  
  Setup:
- 1. Build with Xcode 13 (tested with Version 13.2.1 (13C100)), having the macOS deployment target set
+ 1. Build with Xcode 16 (tested with Version 16.2 (16C5032a)), having the macOS deployment target set
     to 10.15 (or later) and the Hardened Runtime capability enabled.
 
  2. Link with libraries:
@@ -209,6 +210,24 @@ const NSString* event_type_str(const es_event_type_t event_type) {
         // The following events are available beginning in macOS 12.0
         @"NOTIFY_SETUID", @"NOTIFY_SETGID", @"NOTIFY_SETEUID", @"NOTIFY_SETEGID", @"NOTIFY_SETREUID",
         @"NOTIFY_SETREGID", @"AUTH_COPYFILE", @"NOTIFY_COPYFILE"
+
+        // The following events are available beginning in macOS 13.0
+        @"NOTIFY_AUTHENTICATION", @"NOTIFY_XP_MALWARE_DETECTED", @"NOTIFY_XP_MALWARE_REMEDIATED",
+        @"NOTIFY_LW_SESSION_LOGIN", @"NOTIFY_LW_SESSION_LOGOUT", @"NOTIFY_LW_SESSION_LOCK", @"NOTIFY_LW_SESSION_UNLOCK",
+        @"NOTIFY_SCREENSHARING_ATTACH", @"NOTIFY_SCREENSHARING_DETACH", @"NOTIFY_OPENSSH_LOGIN", @"NOTIFY_OPENSSH_LOGOUT",
+        @"NOTIFY_LOGIN_LOGIN", @"NOTIFY_LOGIN_LOGOUT", @"NOTIFY_BTM_LAUNCH_ITEM_ADD", @"NOTIFY_BTM_LAUNCH_ITEM_REMOVE",
+
+        // The following events are available beginning in macOS 14.0
+        @"NOTIFY_PROFILE_ADD", @"NOTIFY_PROFILE_REMOVE", @"NOTIFY_SU", @"NOTIFY_AUTHORIZATION_PETITION",
+        @"NOTIFY_AUTHORIZATION_JUDGEMENT", @"NOTIFY_SUDO", @"NOTIFY_OD_GROUP_ADD",
+        @"NOTIFY_OD_GROUP_REMOVE", @"NOTIFY_OD_GROUP_SET", @"NOTIFY_OD_MODIFY_PASSWORD",
+        @"NOTIFY_OD_DISABLE_USER", @"NOTIFY_OD_ENABLE_USER",
+        @"NOTIFY_OD_ATTRIBUTE_VALUE_ADD", @"NOTIFY_OD_ATTRIBUTE_VALUE_REMOVE", @"NOTIFY_OD_ATTRIBUTE_SET",
+        @"NOTIFY_OD_CREATE_USER", @"NOTIFY_OD_CREATE_GROUP", @"NOTIFY_OD_DELETE_USER", @"NOTIFY_OD_DELETE_GROUP",
+        @"NOTIFY_XPC_CONNECT",
+
+        // The following events are available beginning in macOS 15.0
+        @"NOTIFY_GATEKEEPER_USER_OVERRIDE"
     };
     
     if(event_type >= ES_EVENT_TYPE_LAST) {
